@@ -1,0 +1,15 @@
+.docs-content__sidenav {
+  padding: 25px 10px;
+}
+
+.docs-content__main {
+  padding: 10px 0 10px 20px;
+}
+
+.light-gray-text {
+  color: #6b6d6e;
+}
+
+.docs-tutorial {
+  width: 80%;
+}

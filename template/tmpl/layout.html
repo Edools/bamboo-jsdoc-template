@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    {% block title %}{{ conf.templates.title }}{% endblock %}
+  </title>
+
+  <link rel="stylesheet" href="/static/styles/main.css">
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/static/styles/prism.css">
+</head>
+<body class="mdl-layout__container">
+  <div class="mdl-layout mdl-js-layout">
+    {% block header %}
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">{{ conf.templates.title }}</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation">
+            {% for item in metadata.header %}
+              <a class="mdl-navigation__link" href="/tutorials/{{ item.name }}.html">{{ item.title }}</a>
+            {% endfor %}
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">{{ conf.templates.title }}</span>
+        <nav class="mdl-navigation">
+        {% for app in apps %}
+          <a class="mdl-navigation__link" href="/apps/{{ app.name }}.html">{{ app.name }}</a>
+        {% endfor %}
+        </nav>
+      </div>
+    {% endblock %}
+
+    <div class="mdl-layout__content">
+      <div class="mdl-grid mdl-grid--no-spacing">
+        {% block sidenav %}{% endblock %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+
+    {% block footer %}{% endblock %}
+  </div>
+
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+  <script src="/static/scripts/prism.js"></script>
+</body>
+</html>

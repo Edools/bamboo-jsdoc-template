@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block title %}{{ app.name }}{% endblock %}
+
+{% block sidenav %}
+  <aside class="docs-content__sidenav mdl-cell mdl-cell--2-col mdl-shadow--4dp">
+    <ul>
+      <li>
+        <a href="#about">About</a>
+      </li>
+      {% if app.templates.length > 0 %}
+      <li>
+        <a href="#templates">Templates</a>
+        <ul>
+          {% for template in app.templates %}
+          <li>
+            <a href="#templates-{{ template.longname }}">{{ template.longname }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endif %}
+      {% if app.components.length > 0 %}
+      <li>
+        <a href="#components">Components</a>
+        <ul>
+          {% for component in app.components %}
+          <li>
+            <a href="#components-{{ component.longname }}">{{ component.longname }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+  </aside>
+{% endblock %}
+
+{% block content %}
+  <main class="docs-content__main mdl-cell mdl-cell--10-col">
+    <div id="about">
+      <h2>
+        {{ app.name }}
+        <small class="light-gray-text">({{ app.version }})</small>
+      </h2>
+      <p>{{ app.description }}</p>
+    </div>
+
+    {% if app.templates.length > 0 %}
+      <div id="templates">
+        <h3>Templates</h3>
+        {% for template in app.templates %}
+          <h4 id="templates-{{ template.longname }}">
+            {{ template.longname }}
+          </h4>
+          <p>{{ template.description }}</p>
+
+          {% if template.examples.length > 0 %}
+            <h5>Examples</h5>
+            {% for example in template.examples %}
+              <pre class="mdl-cell mdl-cell--12-col"><code class="language-markup">{{ example }}</code></pre>
+            {% endfor %}
+          {% endif %}
+
+          {% if template.params.length > 0 %}
+            <h5>Variables</h5>
+            {% for param in template.params %}
+              <h6>{{ param.name }} ({{ param.type.names }})</h6>
+              <p>{{ param.description }}</p>
+
+              {% if param.properties.length > 0 %}
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell--12-col">
+                  <thead>
+                    <tr>
+                      <th class="mdl-data-table__cell--non-numeric">Name</th>
+                      <th class="mdl-data-table__cell--non-numeric">Type</th>
+                      <th class="mdl-data-table__cell--non-numeric">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for prop in param.properties %}
+                      <tr>
+                        <td class="mdl-data-table__cell--non-numeric">{{ prop.name }}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ prop.type.names }}</td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ prop.description }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if app.components.length > 0 %}
+      <div id="components">
+        <h3>Components</h3>
+        {% for component in app.components %}
+          <h4 id="components-{{ component.longname }}">
+            {{ component.longname }}
+          </h4>
+          <p>{{ component.description }}</p>
+
+          {% if component.examples.length > 0 %}
+            <h5>Examples</h5>
+            {% for example in component.examples %}
+              <pre class="mdl-cell mdl-cell--12-col"><code class="language-markup">{{ example }}</code></pre>
+            {% endfor %}
+          {% endif %}
+
+          {% if component.params.length > 0 %}
+            <h5>Attributes</h5>
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-cell--12-col">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Name</th>
+                  <th class="mdl-data-table__cell--non-numeric">Type</th>
+                  <th class="mdl-data-table__cell--non-numeric">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for attribute in component.params %}
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">{{ attribute.name }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ attribute.type.names }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ attribute.description }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </main>
+{% endblock %}

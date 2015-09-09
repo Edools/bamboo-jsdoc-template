@@ -1,0 +1,20 @@
+{
+  "name": "bamboo-doc",
+  "version": "0.1.0",
+  "description": "Bamboo documentation template for JSDoc",
+  "main": "template/publish.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Diogo Beda <diogo.fbeda@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "fs-extra": "^0.24.0",
+    "marked": "^0.3.5",
+    "material-design-lite": "^1.0.4-2",
+    "nunjucks": "^2.0.0",
+    "ramda": "^0.17.1",
+    "rx": "^3.1.1"
+  }
+}
