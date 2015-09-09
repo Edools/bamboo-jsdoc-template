@@ -1,5 +1,5 @@
 {
-  "name": "bamboo-doc",
+  "name": "bamboo-jsdoc-template",
   "version": "0.1.0",
   "description": "Bamboo documentation template for JSDoc",
   "main": "template/publish.js",
